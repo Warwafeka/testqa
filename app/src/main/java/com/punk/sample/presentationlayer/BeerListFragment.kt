@@ -10,18 +10,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.punk.sample.R
+import com.punk.sample.objects.Beer
 import com.punk.sample.presentationlayer.adapters.BeerAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class BeerListFragment : Fragment() {
+class BeerListFragment : Fragment(), BeerAdapter.IListener {
 	interface IListener {
-		fun showBeer(beerId: Long)
+		fun showBeer(beer: Beer)
 	}
 
 	protected val viewModel by viewModels<BeerViewModel>()
 
-	protected val beerAdapter = BeerAdapter()
+	protected val beerAdapter = BeerAdapter(this)
 
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -44,5 +45,9 @@ class BeerListFragment : Fragment() {
 
 	companion object {
 		fun newInstance() = BeerListFragment()
+	}
+
+	override fun onBeerClicked(beer: Beer) {
+		(activity as? IListener)?.showBeer(beer)
 	}
 }

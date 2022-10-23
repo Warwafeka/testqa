@@ -7,7 +7,7 @@ abstract class AbstractViewHolder<T>(view: View): RecyclerView.ViewHolder(view) 
 	protected var item: T? = null
 
 	fun bind(item: Any?) {
-		this.item = item as T
+		this.item = item as? T
 
 		bindView()
 	}

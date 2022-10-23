@@ -12,7 +12,10 @@ class SampleInitializer: Initializer<KoinApplication> {
 		androidLogger()
 		androidContext(context)
 
-		modules(PunkModule(context).createModule())
+		modules(
+			PunkModule(context).createModule(),
+			ImageModule().createModule()
+		)
 	}
 
 	override fun dependencies(): MutableList<Class<out Initializer<*>>> {

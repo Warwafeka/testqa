@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/container"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:foreground="?selectableItemBackgroundBorderless"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.punk.sample.presentationlayer.MainActivity"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     >
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        />
-    <TextView
-        android:id="@+id/name"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:lines="2"
+        tools:context="com.punk.sample.presentationlayer.MainActivity"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:lines="2"
+            android:ellipsize="end"
 
-        android:layout_below="@+id/image"
-        />
-</RelativeLayout>
+            android:layout_below="@+id/image"
+            android:layout_margin="4dp"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

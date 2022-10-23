@@ -3,6 +3,7 @@ package com.punk.sample.presentationlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.punk.sample.R
+import com.punk.sample.objects.Beer
 
 class MainActivity : AppCompatActivity(), BeerListFragment.IListener {
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,9 @@ class MainActivity : AppCompatActivity(), BeerListFragment.IListener {
 		}
 	}
 
-	override fun showBeer(beerId: Long) {
-
+	override fun showBeer(beer: Beer) {
+		BeerBottomDialog
+			.newDialog(beer)
+			.show(supportFragmentManager, BeerBottomDialog.TAG)
 	}
 }
