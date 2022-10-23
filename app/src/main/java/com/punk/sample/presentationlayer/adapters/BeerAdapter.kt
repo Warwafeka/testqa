@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.punk.sample.R
+import com.punk.sample.objects.Beer
 
 class BeerAdapter(val listener: IListener): PagingDataAdapter<Any, AbstractViewHolder<*>>(Calculator()) {
 	interface IListener: BeerViewHolder.IListener
@@ -25,11 +26,21 @@ class BeerAdapter(val listener: IListener): PagingDataAdapter<Any, AbstractViewH
 	@SuppressLint("DiffUtilEquals")
 	class Calculator: DiffUtil.ItemCallback<Any>() {
 		override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
-			return oldItem::class.java == newItem::class.java
+			if (oldItem is Beer && newItem is Beer) {
+				return oldItem.id == newItem.id
+			}
+
+			return false
 		}
 
 		override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
-			return oldItem == newItem
+			if (oldItem is Beer && newItem is Beer) {
+				return oldItem.id == newItem.id
+			}
+
+			return false
 		}
 	}
+
+	fun isEmpty(): Boolean = itemCount == 0
 }
